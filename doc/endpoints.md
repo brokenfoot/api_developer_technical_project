@@ -17,7 +17,8 @@ Return all information about the requested city.  Example:
 
 ```
 GET /city/1
-
+```
+```
 {
 	"name": "Chicago, IL",
 	"id": 1,
@@ -46,7 +47,8 @@ POST /rank
 		"taxes": 0.5
 	}
 }
-
+```
+```
 [
 	{
 		"name": "Seattle, WA",
