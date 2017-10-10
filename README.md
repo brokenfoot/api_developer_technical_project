@@ -18,9 +18,8 @@ A description of these endpoints is in `doc/endpoints.md`.  Data is in `data/cit
 1) Write an API service that implements the endpoints described in `doc/endpoints.md`.
 2) If some aspect of the spec is ambiguous, use your best judgement and document what decision you made and why.
 3) Sample requests and responses are supplied in `doc/endpoints.md`.  You do _not_ need to match the pretty-printing style, field order, etc.
-4) Anything you want to do to impress us, e.g. CI script, Dockerfile, Terraform plan for AWS, etc.
-5) Write a file named `INSTALL.md` which describes the steps we need to take to run your code, preferably something that works on a recent Linux release.
-6) Push everything up to a repository on GitHub, then send us a link.
+4) Write a file named `INSTALL.md` which describes the steps we need to take to run your code, preferably something that works on a recent Linux release.
+5) Push everything up to a repository on GitHub, then send us a link.
 
 ## Review
 __Remember to include a text file named `INSTALL.md`__ which clearly describes how we can go about running your code, preferably on a recent Linux release.
@@ -28,5 +27,5 @@ __Remember to include a text file named `INSTALL.md`__ which clearly describes h
 Here are the questions that we'll ask as we look at your code:
 * Does the code run and work as expected?
 * Is the implementation well thought out?
-* Is the code documented effectively?  Can we understand the structure within a few minutes?
+* Can we understand the structure within a few minutes?
 * In what ways has your implementation exceeded our expectations?
