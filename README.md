@@ -10,7 +10,7 @@ In this hypothetical scenario, Emsi is working with major corporations who are l
 
 There are two general "flows":
 1) The customer wants to see how a particular city scores on all metrics.
-2) The customer wants to weight each available metric and see a ranked list of cities.  For instance, they care very deeply about walkability and weight it as `4`, while job growth is left at a weight of `1`.  A city's overall score is determined by multiplying the metric value by the metric weight, then adding all metrics together.  So if Chicago has a walkability score of `1.7` and a jobs-growth score of `2.32`, in this scenario it's overall score would be `1.7 x 4 + 2.32 x 1 = 9.12`.
+2) The customer wants to weight each available metric and see a ranked list of cities.  For instance, they care very deeply about walkability and weight it as `4`, while job growth is left at a weight of `1`.  A city's overall score is determined by multiplying the metric value by the metric weight, then adding all metrics together.  So if Chicago has a walkability score of `1.7` and a jobs-growth score of `2.32`, in this scenario its overall score would be `1.7 x 4 + 2.32 x 1 = 9.12`.
 
 A description of these endpoints is in `doc/endpoints.md`.  Data is in `data/cities.json`; consider this a sample and design as if there are at least 300 cities in the full data set.  If you choose to put the data into a database of some sort, make sure you script it so that we can replicate it.
 
