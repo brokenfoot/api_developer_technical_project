@@ -42,7 +42,7 @@ POST /rank
 {
 	"weights": {
 		"walkability": 1.0,
-		"job_growth": 1.0
+		"job_growth": 1.0,
 		"green_space": 2.5,
 		"taxes": 0.5
 	}
