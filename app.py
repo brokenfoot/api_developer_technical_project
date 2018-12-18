@@ -23,7 +23,6 @@ class City(object):
 
 class Ranking(object):
     def on_post(self, req, resp):
-        weights = req.get_param('weights')
         try:
             weights = json.loads(req.bounded_stream.read())['weights']
         except Exception as e:
