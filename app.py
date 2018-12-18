@@ -5,13 +5,13 @@ import pandas as pd
 
 class City(object):
     def on_get(self, req, resp, city_id):
-        city_id = int(city_id)
         data_file = open('data/cities.json')
         data = json.loads(data_file.read())
         resp.body = None
         for city in data:
             if city['id'] == city_id:
                 resp.body = json.dumps(city)
+                return
 
         if resp.body is None:
             raise falcon.HTTPError(
@@ -21,10 +21,17 @@ class City(object):
             )
 
 
+class AllCities(object):
+    def on_get(self, req, resp):
+        data_file = open('data/cities.json')
+        resp.body = data_file.read()
+
+
 class Ranking(object):
     def on_post(self, req, resp):
+        json_body = json.loads(req.bounded_stream.read())
         try:
-            weights = json.loads(req.bounded_stream.read())['weights']
+            weights = json_body['weights']
         except Exception as e:
             print(e)
             raise falcon.HTTPError(
@@ -32,6 +39,17 @@ class Ranking(object):
                 title = "Weights Error",
                 description = "Malformed request. Check out the documentation for how to make a request for this data.",
                 href = "https://github.com/brokenfoot/api_developer_technical_project/blob/master/doc/endpoints.md"
+            )
+
+        limit = json_body['limit'] if 'limit' in json_body else "all"
+        try:
+            if limit != "all":
+                limit = int(limit)
+        except ValueError:
+            raise falcon.HTTPError(
+                "400 Bad Request",
+                title = "Limit Error",
+                description = "`limit` must be a number, not a string."
             )
 
         data_file = open('data/cities.json')
@@ -59,11 +77,17 @@ class Ranking(object):
 
         df = pd.DataFrame(city_weightings)
         df.sort_values(by = 'overall_score', inplace = True, ascending = False)
+        if limit != "all":
+            df = df.head(limit)
 
-        resp.body = json.dumps(df.to_dict(orient = 'records'))
+        resp.body = json.dumps({
+            "data": df.to_dict(orient = 'records'),
+            "totalRows": len(df)
+        })
 
 
 app = falcon.API()
 
-app.add_route('/city/{city_id}', City())
+app.add_route('/city/{city_id:int}', City())
+app.add_route('/city/all', AllCities())
 app.add_route('/rank', Ranking())
